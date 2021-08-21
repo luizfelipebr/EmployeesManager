@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeesManager.Domain.Contracts.v1;
+using EmployeesManager.Domain.Contracts.Employees;
 using EmployeesManager.Domain.Entities.Employees;
 using EmployeesManager.Domain.Exceptions;
 using EmployeesManager.Domain.Interfaces.Repositories;

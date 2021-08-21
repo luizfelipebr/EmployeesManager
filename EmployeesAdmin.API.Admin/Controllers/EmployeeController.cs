@@ -1,4 +1,4 @@
-﻿using EmployeesManager.Domain.Contracts.v1;
+﻿using EmployeesManager.Domain.Contracts.Employees;
 using EmployeesManager.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
