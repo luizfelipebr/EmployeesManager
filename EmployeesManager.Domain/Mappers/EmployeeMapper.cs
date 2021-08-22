@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using EmployeesManager.Domain.Contracts.Employees;
 using EmployeesManager.Domain.Entities.Employees;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EmployeesManager.Domain.Mappers
 {
@@ -11,26 +8,13 @@ namespace EmployeesManager.Domain.Mappers
     {
         public EmployeeMapper()
         {
-            CreateMap<EmployeePostRequest, Employee>()
-                .ForMember(x => x.PasswordHash, x => x.Ignore())
-                .ForMember(x => x.Email, x => x.MapFrom(scr => scr.Email))
-                .ForMember(x => x.UserName, x => x.MapFrom(scr => scr.Email))
-                .ForMember(x => x.FirstName, x => x.MapFrom(scr => scr.FirstName))
-                .ForMember(x => x.LastName, x => x.MapFrom(scr => scr.LastName));
+            CreateMap<EmployeePostRequest, Employee>();
 
-            CreateMap<EmployeePutRequest, Employee>()
-                .ForMember(x => x.PasswordHash, x => x.Ignore())
-                .ForMember(x => x.FirstName, x => x.MapFrom(scr => scr.FirstName))
-                .ForMember(x => x.LastName, x => x.MapFrom(scr => scr.LastName));
+            CreateMap<EmployeePutRequest, Employee>();
 
             CreateMap<Employee, EmployeeResponse>()
                 .ForMember(x => x.Leader, x => x.MapFrom(
-                    src => new LeaderResponse()
-                    {
-                        LeaderId = src.Id,
-                        FullName = src.GetFullName()
-                    }))
-                .ReverseMap();
+                    src => new LeaderResponse(src.LeaderId, src.Leader.GetFullName())));
         }
     }
 }

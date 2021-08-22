@@ -17,14 +17,13 @@ namespace EmployeesManager.Infra.EntityConfigurations
             builder.Property(e => e.LastName)
                 .IsRequired();
 
-            builder.Property(e => e.Email)
-                .IsRequired();
-
             builder.Property(e => e.PlateNumber)
                 .IsRequired();
 
             builder.HasIndex(e => e.PlateNumber)
                 .IsUnique();
+
+            builder.HasOne(e => e.User);
 
             builder.HasOne(e => e.Leader)
                 .WithMany(l => l.Employees)

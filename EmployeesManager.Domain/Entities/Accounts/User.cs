@@ -9,6 +9,6 @@ namespace EmployeesManager.Domain.Entities.Accounts
     public class User : IdentityUser<Guid>
     {
         public Guid EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

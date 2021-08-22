@@ -16,7 +16,13 @@ namespace EmployeesManager.Domain.Contracts.Employees
 
     public class LeaderResponse
     {
-        public Guid LeaderId { get; set; }
+        public Guid? LeaderId { get; set; }
         public string FullName { get; set; }
+        public LeaderResponse() { }
+        public LeaderResponse(Guid? id, string fullName)
+        {
+            this.LeaderId = id;
+            this.FullName = fullName;
+        }
     }
 }

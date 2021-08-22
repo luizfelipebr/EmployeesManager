@@ -16,9 +16,10 @@ namespace EmployeesManager.Infra.DependencyInjection.CrossCutting.IoC
         public static IServiceCollection AddEmployeesRepositories(this IServiceCollection services)
         {
             return services
-                .AddScoped<IEmployeeRepository, EmployeeRepository>()
-                .AddScoped<IContactRepository, ContactRepository>()
-                .AddScoped<IUnitOfWork, UnitOfWork>();
+                .AddSingleton<IUserRepository, UserRepository>()
+                .AddSingleton<IEmployeeRepository, EmployeeRepository>()
+                .AddSingleton<IContactRepository, ContactRepository>()
+                .AddSingleton<IUnitOfWork, UnitOfWork>();
         }
     }
 }

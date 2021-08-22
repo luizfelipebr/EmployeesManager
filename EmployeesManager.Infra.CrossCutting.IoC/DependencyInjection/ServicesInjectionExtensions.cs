@@ -22,7 +22,7 @@ namespace EmployeesManager.Infra.CrossCutting.IoC.DependencyInjection
             services
             .AddHttpContextAccessor()
             .AddScoped<IAccountsService, AccountsService>()
-            .AddIdentity<Employee, CustomRole>(options =>
+            .AddIdentity<User, CustomRole>(options =>
             {
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
