@@ -12,7 +12,7 @@ namespace EmployeesManager.Infra.CrossCutting.IoC.DependencyInjection
         )
         {
             services.AddIdentityCore<Employee>()
-                .AddEntityFrameworkStores<EmployeesAdminContext>();
+                .AddEntityFrameworkStores<EmployeesManagerDBContext>();
 
             return services;
         }

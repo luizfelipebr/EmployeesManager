@@ -24,11 +24,12 @@ namespace EmployeesAdmin.API.Admin
             services.AddControllersConfig();
             services.AddMapper();
             services.AddEmployeesRepositories();
+            services.AddAccountsServices();
             services.AddEmployeesServices();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Employee API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Employee Manager API", Version = "v1" });
             });
         }
 

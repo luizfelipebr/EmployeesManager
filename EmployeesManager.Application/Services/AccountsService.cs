@@ -1,17 +1,17 @@
-﻿using EmployeesManager.Domain.Entities.Employees;
+﻿using EmployeesManager.Domain.Entities.Accounts;
 using EmployeesManager.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace EmployeesManager.Application.Services
 {
-    public class HttpContextHelper : IHttpContextHelper
+    public class AccountsService : IAccountsService
     {
-        private readonly UserManager<Employee> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HttpContextHelper(
-            UserManager<Employee> userManager,
+        public AccountsService(
+            UserManager<User> userManager,
             IHttpContextAccessor httpContext
         )
         {
@@ -19,12 +19,17 @@ namespace EmployeesManager.Application.Services
             _httpContextAccessor = httpContext;
         }
 
-        public Employee GetCurrentUser()
+        public User GetCurrentUser()
         {
             var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
-            var user = _userManager.FindByEmailAsync(userName).Result;
+            var user = _userManager.FindByEmailAsync(userName).GetAwaiter().GetResult();
 
             return user;
+        }
+
+        public void CreateUser()
+        {
+
         }
     }
 }

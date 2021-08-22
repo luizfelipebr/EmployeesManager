@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EmployeesManager.Domain.Entities.Accounts;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 
 namespace EmployeesManager.Domain.Entities.Employees
 {
-    public class Employee : IdentityUser<Guid>
+    public class Employee : EntityBase<Employee>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,10 +13,17 @@ namespace EmployeesManager.Domain.Entities.Employees
         public Guid LeaderId { get; set; }
         public Leader Leader { get; set; }
         public ICollection<Contact> Contacts { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
 
         public string GetFullName()
         {
-            return FirstName + " " + LastName;
+            return this.FirstName + " " + LastName;
+        }
+
+        public override bool IsValid()
+        {
+            throw new NotImplementedException();
         }
     }
 }

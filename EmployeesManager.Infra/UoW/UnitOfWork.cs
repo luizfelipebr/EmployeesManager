@@ -4,9 +4,9 @@ namespace EmployeesManager.Infra.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly EmployeesAdminContext _context;
+        private readonly EmployeesManagerDBContext _context;
 
-        public UnitOfWork(EmployeesAdminContext context)
+        public UnitOfWork(EmployeesManagerDBContext context)
         {
             _context = context;
         }
