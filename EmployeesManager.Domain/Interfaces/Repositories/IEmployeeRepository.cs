@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmployeesManager.Domain.Interfaces.Repositories
 {
-    public interface IEmployeeRepository : IDisposable
+    public interface IEmployeeRepository : IRepository<Employee>
     {
-        Task<IdentityResult> Add(Employee user, string password);
-        Task<IdentityResult> Update(Employee user);
-        Task<IdentityResult> Delete(Guid id);
-        Task<Employee> GetById(Guid id);
-        Task<Employee> GetByEmail(string email);
-        IList<Employee> GetAll();
+        Employee GetByEmail(string email);
         Employee GetByPlateNumber(int plateNumber);
         List<Employee> GetAllEmployeesByLeader(Guid leaderId);
     }

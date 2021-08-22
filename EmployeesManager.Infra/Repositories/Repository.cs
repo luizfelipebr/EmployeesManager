@@ -9,10 +9,10 @@ namespace EmployeesManager.Infra.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase<T>
     {
-        protected EmployeesAdminContext Db;
+        protected EmployeesManagerDBContext Db;
         protected DbSet<T> DbSet;
 
-        public Repository(EmployeesAdminContext context)
+        public Repository(EmployeesManagerDBContext context)
         {
             Db = context;
             DbSet = Db.Set<T>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EmployeesManager.Domain.Contracts.v1
+namespace EmployeesManager.Domain.Contracts.Employees
 {
     public class EmployeeResponse
     {
@@ -16,7 +16,13 @@ namespace EmployeesManager.Domain.Contracts.v1
 
     public class LeaderResponse
     {
-        public Guid LeaderId { get; set; }
+        public Guid? LeaderId { get; set; }
         public string FullName { get; set; }
+        public LeaderResponse() { }
+        public LeaderResponse(Guid? id, string fullName)
+        {
+            this.LeaderId = id;
+            this.FullName = fullName;
+        }
     }
 }

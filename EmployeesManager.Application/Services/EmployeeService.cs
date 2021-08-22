@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeesManager.Domain.Contracts.v1;
+using EmployeesManager.Domain.Contracts.Employees;
 using EmployeesManager.Domain.Entities.Employees;
 using EmployeesManager.Domain.Exceptions;
 using EmployeesManager.Domain.Interfaces.Repositories;
@@ -13,15 +13,18 @@ namespace EmployeesManager.Application.Services
 {
     public class EmployeeService : IEmployeeService
     {
+        private readonly IAccountsService _accountsServices;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public EmployeeService(
+            IAccountsService accountsService,
             IEmployeeRepository employeeRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
+            _accountsServices = accountsService;
             _employeeRepository = employeeRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -29,9 +32,6 @@ namespace EmployeesManager.Application.Services
 
         public async Task<EmployeeResponse> CreateEmployee(EmployeePostRequest request)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.LastName))
-                throw new BusinessException("The Email field cannot be null", "Email");
-
             if (string.IsNullOrEmpty(request.FirstName))
                 throw new BusinessException("The FirstName field cannot be null", "FirstName");
 
@@ -39,10 +39,13 @@ namespace EmployeesManager.Application.Services
                 throw new BusinessException("The LastName field cannot be null", "LastName");
 
             var entity = _mapper.Map<Employee>(request);
-            await _employeeRepository.Add(entity, request.Password);
+            await _employeeRepository.Add(entity);
             _unitOfWork.Commit();
 
-            return _mapper.Map<EmployeeResponse>(entity);
+            //TODO: To create the user
+            //return _mapper.Map<EmployeeResponse>(entity);
+
+            throw new NotImplementedException();
         }
 
         public async Task<EmployeeResponse> UpdateEmployee(Guid id, EmployeePutRequest request)
@@ -53,10 +56,12 @@ namespace EmployeesManager.Application.Services
             entity.PlateNumber = request.PlateNumber > 0 ? request.PlateNumber : entity.PlateNumber;
             entity.LeaderId = request.LeaderId;
 
-            await _employeeRepository.Update(entity);
-            _unitOfWork.Commit();
+            //TODO: To implement rules
+            //await _employeeRepository.Update(entity);
+            //_unitOfWork.Commit();
+            //return _mapper.Map<EmployeeResponse>(entity);
 
-            return _mapper.Map<EmployeeResponse>(entity);
+            throw new NotImplementedException();
         }
 
         public List<EmployeeResponse> GetAllEmployees(EmployeeRequestFilter filter)
@@ -68,7 +73,7 @@ namespace EmployeesManager.Application.Services
             }
             else
             {
-                result = _employeeRepository.GetAll();
+                result = _employeeRepository.GetAll().GetAwaiter().GetResult();
             }
             var response = _mapper.Map<List<EmployeeResponse>>(result);
             return response;

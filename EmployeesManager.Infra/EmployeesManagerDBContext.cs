@@ -1,4 +1,5 @@
-﻿using EmployeesManager.Domain.Entities.Employees;
+﻿using EmployeesManager.Domain.Entities.Accounts;
+using EmployeesManager.Domain.Entities.Employees;
 using EmployeesManager.Infra.EntityConfigurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,11 +7,11 @@ using System;
 
 namespace EmployeesManager.Infra
 {
-    public class EmployeesAdminContext : IdentityDbContext<Employee, CustomRole, Guid>
+    public class EmployeesManagerDBContext : IdentityDbContext<User, CustomRole, Guid>
     {
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        public EmployeesAdminContext(DbContextOptions<EmployeesAdminContext> options) : base(options) { }
+        public EmployeesManagerDBContext(DbContextOptions<EmployeesManagerDBContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

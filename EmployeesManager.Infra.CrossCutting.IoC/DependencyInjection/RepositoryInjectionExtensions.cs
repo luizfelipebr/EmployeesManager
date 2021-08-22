@@ -10,12 +10,13 @@ namespace EmployeesManager.Infra.DependencyInjection.CrossCutting.IoC
     {
         public static IServiceCollection AddInMemoryContext(this IServiceCollection services)
         {
-            return services.AddDbContext<EmployeesAdminContext>(opt => opt.UseInMemoryDatabase("Database"));
+            return services.AddDbContext<EmployeesManagerDBContext>(opt => opt.UseInMemoryDatabase("Database"));
         }
 
         public static IServiceCollection AddEmployeesRepositories(this IServiceCollection services)
         {
             return services
+                .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IEmployeeRepository, EmployeeRepository>()
                 .AddScoped<IContactRepository, ContactRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();

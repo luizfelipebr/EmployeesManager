@@ -5,6 +5,6 @@ namespace EmployeesManager.Infra.Repositories
 {
     public class ContactRepository : Repository<Contact>, IContactRepository
     {
-        public ContactRepository(EmployeesAdminContext context) : base(context) { }
+        public ContactRepository(EmployeesManagerDBContext context) : base(context) { }
     }
 }

@@ -1,6 +1,5 @@
-﻿using EmployeesManager.Domain.Entities.Employees;
+﻿using EmployeesManager.Domain.Entities.Accounts;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmployeesManager.Infra.CrossCutting.IoC.DependencyInjection
@@ -11,8 +10,8 @@ namespace EmployeesManager.Infra.CrossCutting.IoC.DependencyInjection
             this IServiceCollection services
         )
         {
-            services.AddIdentityCore<Employee>()
-                .AddEntityFrameworkStores<EmployeesAdminContext>();
+            services.AddIdentityCore<User>()
+                .AddEntityFrameworkStores<EmployeesManagerDBContext>();
 
             return services;
         }

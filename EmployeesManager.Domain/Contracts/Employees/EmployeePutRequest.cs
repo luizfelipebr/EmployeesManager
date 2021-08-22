@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EmployeesManager.Domain.Contracts.v1
+namespace EmployeesManager.Domain.Contracts.Employees
 {
     public class EmployeePutRequest
     {
